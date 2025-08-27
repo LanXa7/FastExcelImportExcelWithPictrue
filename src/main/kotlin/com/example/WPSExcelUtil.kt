@@ -61,7 +61,7 @@ object WPSExcelUtil {
             val sr = SAXReader()
             val doc: Document = sr.read(cellImagesXml.byteInputStream())
 
-            /* 注册命名空间前缀 */
+            // 注册命名空间前缀
             val etcNs = Namespace("etc", "http://www.wps.cn/officeDocument/2017/etCustomData")
             val xdrNs = Namespace("xdr", "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing")
             val aNs = Namespace("a", "http://schemas.openxmlformats.org/drawingml/2006/main")
@@ -74,7 +74,7 @@ object WPSExcelUtil {
 
             val idToRidMap = mutableMapOf<String, String>()
 
-            /* 使用带前缀的 XPath */
+            // 使用带前缀的XPath
             val cellImages = doc.selectNodes("//etc:cellImage")
             for (cellImage in cellImages) {
                 val cellImageElement = cellImage as Element
@@ -131,7 +131,8 @@ object WPSExcelUtil {
 
     /**
      * 获取完整的图片映射关系
-     * @return 图片ID到字节数组的映射
+     * @param inputStream Excel文件输入流
+     * @return 图片Id到字节数组的映射 后续需要手动遍历上传到oss获得新的图片Id到url的映射
      */
     fun getImageMapping(
         inputStream: InputStream

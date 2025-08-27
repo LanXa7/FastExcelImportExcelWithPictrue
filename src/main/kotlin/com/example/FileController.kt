@@ -18,7 +18,7 @@ class FileController {
         val imageMapping = WPSExcelUtil.getImageMapping(file.inputStream)
         // 读取Excel数据
         FastExcel.read(file.inputStream, StyleExcel::class.java, ExcelListener())
-            .registerConverter(ImageStringConverter(imageMapping))
+            .registerConverter(ImageImportConverter(imageMapping))
             .sheet()
             .doRead()
     }
