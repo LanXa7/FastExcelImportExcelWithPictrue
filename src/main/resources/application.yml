@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: excel_image_demo
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
